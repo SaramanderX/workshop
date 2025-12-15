@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* นิยามตัวแปร */
+:root{
+    --box-shadow: 0 1px 3px rgba(0,0,0,0.12) 
+}
+*{
+    box-sizing: border-box;
+    font-family: "Kanit", "K2D",sans-serif;
+}
+
+body{
+    font-family: "Kanit", "K2D",sans-serif;
+    /* flex แนวนอน row */
+    display: flex; 
+    /* อยากให้เรียงในแนว column */ 
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #bbb;
+}
+/* ทดสอบกล่องเพื่อเพิ่มความเข้าใจขอบเขต */
+/* div{
+    border: 1px solid rgb(230, 50, 50);
+} */
+.container{
+    /* ระยะ */
+    margin: 30px auto;
+    width: 350px;
+}
+h1{
+    letter-spacing: 1px;
+    margin: 0;
+}
+/* เส้นคั่น */
+h3{
+    border-bottom: 1px solid #7c7a7a;
+    /* เส้นคั่นติดกันเกินไปให้เพิ่ม padding */
+    padding-bottom: 10px;
+    margin: 40px 0 10px;
+}
+h4{
+    margin: 0;
+}
+.income-expense-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 10px;
+    /* ใส่เงา */
+    box-shadow: var(--box-shadow);
+    /* รายรับรายจ่ายติดขอบเกินไป */
+    padding: 20px 20px;
+    margin: 20px 0;
+}
+/* เพิ่มเส้นคั่นระหว่างกล่องรายรับรายจ่าย */
+.income-expense-container>div{
+    /* flex 1 คือให้ระยะขอบ divมาชิดกัน */
+    flex: 1;
+    text-align: center;
+}
+.income-expense-container>div:first-of-type{
+    border-right: 1px solid #dedede;
+}
+
+/* กำหนดสีข้อความรายรับ รายจ่าย */
+.money.plus{
+    color: #2ecc71;
+}
+.money.minus{
+    color: red;
+}
+
+label{
+    /* inline-block อยู่ในแถวเดียวกัน */
+    display: inline-block;
+    /* เพิ่มระยะห่างข้อความ */
+    margin: 10px 0;
+}
+/* กล่อง input */
+input[type="text"],input[type="number"]{
+    font-size: 16px;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    display: block;
+    padding: 10px;
+    /* เพิ่มความกว้างให้r 100% ของ container */
+    width: 100%;
+    box-shadow: var(--box-shadow);
+}
+.btn{
+    font-family: "Kanit",sans-serif;
+    background: purple;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0 30px;
+    padding: 10px;
+    /* align-self ให้อยู่ชิดขวา */
+    align-self: flex-end;
+
+    /* ขนาดปุ่มข้อความ 50%เมื่อเทียบกับ container */
+    width: 50%;
+    /* ตัวหนังสือปุ่ม */
+    text-align: center;
+}
+/* กำหนดให้form เป็นการเรียงตัวแบบ flex */
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+/* ประวัติธุรกรรม */
+.list{
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 40px;
+}
+.list li{
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: var(--box-shadow);
+    color: #333;
+    margin: 10px 0;
+    padding: 10px;
+
+    display:flex ;
+    justify-content: space-between;
+    position: relative;
+}
+/* กำหนดสถานะค่าสีของธุรกรรม */
+
+.list li.plus{
+    /* สร้างขอบขวามือเมื่อclassเป็น plus */
+    border-right: 5px solid #2ecc71;
+}
+.list li.minus{
+    /* สร้างขอบขวามือเมื่อclassเป็น plus */
+    border-right: 5px solid #f32d1f;
+}
+.delete-btn{
+    cursor: pointer;
+    background-color: red;
+    color: white;
+    border-radius: 10px 0px 0px 10px;
+    border: 0;
+    font-size: 20px;
+    line-height: 40px;
+    padding: 2px 5px;
+    /* กำหนดตำแหน่ง */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    /* ย้ายตำแหน่ง x,y */
+    transform: translate(-100%,-50%);
+    /* ซ่อนไว้ก่อน */
+    opacity: 0;
+    /* animation */
+    transition: opacity 0.3 ease;
+}
+/* กำหนดเมื่อเอาเมาส์ไปวางจะโชว์ปุ่มขึ้นมา */
+.list li:hover .delete-btn{
+    opacity: 1;
+}
+.btn:focus,.delete-btn:focus{
+    outline: 0;
+}
