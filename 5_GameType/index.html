@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกมพิมพ์เร็ว | SpeedTyping</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/afc8597c48.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <button id="level-btn" class="level-btn">
+        <i class="fa-solid fa-gear"></i>
+    </button>
+    <div class="setting" id="setting">
+        <form id="level-form">
+            <label style="color: white;" for="">ระดับความยาก :</label>
+            <select name="" id="level">
+                <option value="easy">ง่าย</option>
+                <option value="medium">ปานกลาง</option>
+                <option value="hard">ยาก</option>
+            </select>
+        </form>
+    </div>
+    <div class="container">
+        <h2>เกมพิมพ์เร็ว | SpeedTyping</h2>
+        <h1 id="word">เศรษฐี</h1>
+        <input type="text" id="text" autocomplete="off" placeholder="ป้อนคำที่คุณเห็น">
+         <!--แสดงเวลา  -->
+         <p class="time-container">เวลา <span>10</span>s</p>
+         <p class="score-container"><span id="score">10</span> คะแนน</p>
+         <div id="gameover" class="gameover-container">
+            <h3>จบเกมแล้ว!!</h3>
+         </div>
+    </div>
+    <!-- script -->
+    <script src="script.js"></script>
+</body>
+</html>
