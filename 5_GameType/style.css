@@ -106,3 +106,8 @@ input{
     display: flex;
     flex-direction: column-reverse;
 }
+.btn-start-again{
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+}

@@ -2,10 +2,13 @@ const wordElement = document.getElementById('word');
 const textElement = document.getElementById('text');
 const scoreElement = document.getElementById('score');
 const timeElement = document.getElementById('time');
+const score_final = document.getElementById('score_final');
 
 // ปุ่ม
 const btnlevelEL = document.getElementById('level-btn');
 const settingEL = document.getElementById('setting');
+const btnrestartEL = document.getElementById('btn-startagain');
+
 const levelFormEL = document.getElementById('level-form');
 const levelEL = document.getElementById('level');
 const gameoverEL = document.getElementById('gameover-container');
@@ -13,18 +16,18 @@ const gameoverEL = document.getElementById('gameover-container');
 
 //
 const words_1 = ["แมว","กำเนิด","ปลาหมอ","หมา"]
-const words_2 = ["ศักดิ์สิทธิ์","เศรษฐี","วงศ์ผู้ดี","กาญจนบุรี"]
+const words_3 = ["ศักดิ์สิทธิ์","เศรษฐี","วงศ์ผู้ดี","กาญจนบุรี"]
 
-
+let wordsetting = words_1;
 let result_matching = [] //ที่รับค่าผลการ matching
 // คำต้องเปลี่ยนไปเมื่อป้อนคำถูก คำต้องถูกสุ่มขึ้นมา
-
+let time = 8; // เวลา defualt
 
 
 // เมื่อเปิดเว็ป
 function init(){
     gameoverEL.style.display='none';
-    RandomWord(words_1); //คำสุ่มขึ้นมา
+    RandomWord(wordsetting); //คำสุ่มขึ้นมา
     CheckMatchWords(); //ผลการเช็คการเท่ากันของคำ แล้วทำการ เพิ่มค่าสามาชิกใน result_matching
     console.log(result_matching);
 }
@@ -61,7 +64,7 @@ function CheckMatchWords(){
                 console.log(result)
                 textElement.value = ''; //เปลี่ยนให้ช่องป้อนเป็นค่าว่างหลังพิมแล้ว enter
                 // ทำการสุ่มคำใหม่เมื่อถูกต้อง
-                RandomWord(words_1);
+                RandomWord(wordsetting);
                 //ระบบเพ่ิมคะแนน
                 score_manage(result);
                 console.log("array เพิ่มสมาชิก",result_matching);
@@ -79,7 +82,7 @@ function score_manage(result){
     if (result === "matching"){
         score+=10;
         console.log(score);
-        scoreElement.innerText = `${score}` //เพิ่มค่าแล้วนำไปแสดงที่ html 
+        scoreElement.innerText = `${score}` //เพิ่มค่าแล้วนำไปแสดงที่ html หน้าเกม 
         return score;
     }else{
         console.log(score);
@@ -91,9 +94,9 @@ let timeInterval;
 
 //ระบบเวลา ระบบนับถอยหลัง" (Countdown Timer) : setInterval ให้เรียกใช้ funtion ตามเวลาที่กำหนด clearIntervalหยุด function
 function Timing(){
-    //ถ้าโหมดง่าย 15วิ พิมได้ + 3วิ
-    // ถ้าโหมดปานกลาง 10วิ พิมได้+ 2วิ
-    // ถ้าโหมดยาก 6 วิ + 2วิ
+    //ถ้าโหมดง่าย 8 วิ พิมได้ + 3วิ
+    // ถ้าโหมดปานกลาง 6วิ พิมได้+ 2วิ
+    // ถ้าโหมดยาก 4 วิ + 2วิ
 
     // กฎเหล็ก: สั่งหยุดตัวจับเวลาเก่าก่อนเสมอ! (ถ้ามี)
     // ถ้าไม่สั่งบรรทัดนี้ "ผีนาฬิกา" จะโผล่มาซ้อนกัน
@@ -101,12 +104,11 @@ function Timing(){
 
     let add_time=0;
     // เพิ่มค่าเวลาที่ตอบถูกให้กับ เวลาเริ่มต้น
-    let time = 15;
-
     //เพิ่มเวลา เมื่อตอบถูก
     if (result_matching.at(-1)==="matching"){
         add_time = 3;
-    }
+    }    
+    
     // รวมเวลาเริ่มต้นใหม่ (เช่น 15 + 3 = 18)
     time +=add_time;
 
@@ -114,23 +116,59 @@ function Timing(){
 
     timeInterval = setInterval(updateTimer,1000); //ทุก 1000 มิลิวิ ให้เรียก function updatetime
     function updateTimer(){
+
         time-- // 1.ลดเวลา
         timeElement.innerText = time ; //2.แสดงผลเลข time ใหม่
         // 3. เช็คว่าหมดเวลาหรือยัง?
         if (time<=0){
             clearInterval(timeInterval); //หยุดการนับเวลาหรือการเรียก function
             GameOver(); //function เรียกหน้า เมื่อจบเกม
+            btnrestartEL.addEventListener('click',Restart);
         };
     };
 };
 
-GameOver()
 function GameOver(){
-    // ปแบบคำสั่ง: element.style.ชื่อProperty = "ค่าที่ต้องการ";
+    // แบบคำสั่ง: element.style.ชื่อProperty = "ค่าที่ต้องการ";
     gameoverEL.style.display='flex';
+    score = scoreElement.textContent //เข้าถึงค่าคะแนนที่บันทึกไว้ที่บันทึกไว้ล่าสุด
+    score_final.innerText = `${score}`
+    
+}
+//เริ่มเกมใหม่
+function Restart(){
+    gameoverEL.style.display='none';
+    // reset 
+    result_matching = [] //ที่รับค่าผลการ matching ให้เป็นค่าว่าง
+    // setting ค่า
+    ModeSelction();
+    // เริ่มเกม
+    init();
 }
 //Mode selection
-
+function ModeSelction(){
+    // easyMode mediumMode hardMode
+    levelEL.addEventListener('change',ReadLevel)
+    function ReadLevel(){
+        if (levelEL.value==='easy'){
+            //ให้ปรับเวลาเป็น 8s
+            time = 8;
+            wordsetting = words_1 ; 
+            init();
+        }else if(levelEL.value==='medium'){
+            // ให้ปรับเวลาเป็น 6s
+            time = 6;
+            wordsetting =words_1 ;
+            init();
+        }else if(levelEL.value==='hard'){
+            //ให้ปรับเวลาเป็น 6s และเปลี่ยนชุดคำ
+            time = 6
+            wordsetting = words_3 ; 
+            init(); //เริ่มเกมใหม่
+        }
+        
+    };
+}
 
 console.log(gameoverEL)
 init(); 
