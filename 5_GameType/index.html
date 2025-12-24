@@ -16,7 +16,7 @@
             <label style="color: white;" for="">ระดับความยาก :</label>
             <select name="" id="level">
                 <option value="easy">ง่าย</option>
-                <option value="medium">ปานกลาง</option>
+                <option value="medium" >ปานกลาง</option>
                 <option value="hard">ยาก</option>
             </select>
         </form>
@@ -26,10 +26,10 @@
         <h1 id="word">เศรษฐี</h1>
         <input type="text" id="text" autocomplete="off" placeholder="ป้อนคำที่คุณเห็น">
          <!--แสดงเวลา  -->
-         <p class="time-container">เวลา <span id="time">10</span>s</p>
+         <p class="time-container">เวลา <span id="time"></span> วินาที</p>
          <p class="score-container"><span id="score">0</span> คะแนน</p>
          <div id="gameover-container" class="gameover-container">
-            <button id="btn-startagain" class="btn-start-again">
+            <button id="btn-startagain" class="btn-start-again" onclick="location.reload()">
                 เล่นใหม่อีกครั้ง
             </button>
             <h3>จบเกมแล้ว!!</h3>
@@ -37,6 +37,6 @@
          </div>
     </div>
     <!-- script -->
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>

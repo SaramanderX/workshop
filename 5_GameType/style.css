@@ -103,7 +103,7 @@ input{
     height: 100%;
     justify-content: center;
     align-items: center;
-    display: flex;
+    display: none;
     flex-direction: column-reverse;
 }
 .btn-start-again{

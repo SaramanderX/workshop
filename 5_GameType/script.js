@@ -26,6 +26,7 @@ let time = 8; // เวลา defualt
 
 // เมื่อเปิดเว็ป
 function init(){
+    textElement.focus();
     gameoverEL.style.display='none';
     RandomWord(wordsetting); //คำสุ่มขึ้นมา
     CheckMatchWords(); //ผลการเช็คการเท่ากันของคำ แล้วทำการ เพิ่มค่าสามาชิกใน result_matching
@@ -65,7 +66,7 @@ function CheckMatchWords(){
                 textElement.value = ''; //เปลี่ยนให้ช่องป้อนเป็นค่าว่างหลังพิมแล้ว enter
                 // ทำการสุ่มคำใหม่เมื่อถูกต้อง
                 RandomWord(wordsetting);
-                //ระบบเพ่ิมคะแนน
+                //ระบบเพิ่มคะแนน
                 score_manage(result);
                 console.log("array เพิ่มสมาชิก",result_matching);
             }else{
@@ -148,6 +149,7 @@ function Restart(){
 //Mode selection
 function ModeSelction(){
     // easyMode mediumMode hardMode
+    level_ = levelEL.value 
     levelEL.addEventListener('change',ReadLevel)
     function ReadLevel(){
         if (levelEL.value==='easy'){
@@ -165,10 +167,16 @@ function ModeSelction(){
             time = 6
             wordsetting = words_3 ; 
             init(); //เริ่มเกมใหม่
+        }else{
+            time =8
+            wordsetting =words_1
+            init();
         }
         
     };
 }
 
-console.log(gameoverEL)
+//  ควบคุมปุ่มสำหรับเลือกระดับความยาก
+
+
 init(); 
