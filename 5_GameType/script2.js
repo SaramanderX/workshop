@@ -77,6 +77,7 @@ function startGame(){
     score =0;
     displayWordToUi();
     // ดึงค่าสถานะของ mode มาเช็ค 
+    //เงื่อนไข ? (ถ้าจริงทำอันนี้) : (ถ้าเท็จทำอันนี้)
     saveMode = localStorage.getItem('mode') !==null ? localStorage.getItem('mode') : 'medium' ; 
     //ถ้าเช็คว่าสถานะ local stotrage ไม่ว่าง ให้ดึงค่ามา
     levelEL.value = saveMode ; 
