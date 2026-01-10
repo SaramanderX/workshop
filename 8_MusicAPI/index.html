@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โปรแกรมเล่นเพลง|Music API</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/afc8597c48.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>โปรแกรมเล่นเพลง (Music API)</h1>
+    <div class="music-container" id="music-container">
+        <div class="music-info">
+            <h4 class="title" id="title">----</h4>
+            <div class="progress-container" id="progress-container">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        <audio src="" controls hidden id="audio"></audio>
+        <div class="img-container">
+            <img src="" alt="" id="cover">
+        </div>
+        <!-- แผงควบคุม -->
+         <div class="navigation">
+            <button id="prev" class="action-btn">
+                <i class="fa-solid fa-backward"></i>
+            </button>
+            <button id="play" class="action-btn">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button id="next" class="action-btn">
+                <i class="fa-solid fa-forward"></i>
+            </button>
+         </div>
+    </div>
+    <!-- 
+        ควบคุมการเล่นเพลงและหยุด
+        แสดงเพลงถัดไปและเพลงก่อนหน้า
+        แสดง progressbar ของเพลง
+        เลือกตำแหน่งที่เล่นเพลงได้
+        แสดงผล logoของแต่ละเพลง
+    -->
+    <!-- script -->
+     <script src="script.js"></script>
+</body>
+</html>

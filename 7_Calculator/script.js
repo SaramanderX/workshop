@@ -6,6 +6,16 @@ const inputBtn = document.querySelectorAll('button'); // ได้ array
 const clearBtn = document.getElementById('clear-btn');
 
 
+// สร้าง obj รูปแบบการคำนวณ
+const calculate ={
+    "/": (fristNumber,secondNumber)=> secondNumber!=0 ? fristNumber/secondNumber : "error",
+    "*": (fristNumber,secondNumber)=> fristNumber * secondNumber,
+    "+": (fristNumber,secondNumber)=> fristNumber + secondNumber,
+    "-": (fristNumber,secondNumber)=> fristNumber - secondNumber,
+    "=": (fristNumber,secondNumber)=> secondNumber
+}
+
+
 //ตัวเลขที่ 1 ตัวดำเนินการ ตัวเลขที่ 2 
 
 let fristValue = 0;
@@ -30,7 +40,7 @@ function setNumberValue(number){
 function callOperator(operator){
     // ดึงค่าจากหน้าจอ
     const currentValue = Number(calculatorDisplay.textContent);
-
+    //ดักกรณีที่มีการใส่ค่า operator หลัง
     if(operatorValue && waitForNext){
         operatorValue =operator;
         return;
@@ -40,9 +50,15 @@ function callOperator(operator){
     if(!fristValue){
         fristValue=currentValue; //ค่าเริ่มต้น
     }else{
-        console.log(fristValue);
-        console.log(operatorValue);
-        console.log(currentValue);
+        // ส่งค่าตัวแรก และตัวสองเข้าไปใน function ของ calculate โดยค้นผ่าน key value
+        const result = calculate[operatorValue](fristValue,currentValue);
+        //แสดงค่า
+        calculatorDisplay.textContent = result;
+        fristValue=result;
+        // ถ้าหารได้ 0 แล้วระบบส่งค่า error จะให้ reset
+        if(fristValue ==='error'){
+            resetAll();
+        }
     }
     
     operatorValue = operator; //กำหนดตัวดำเนินการโดยใช้กำหนดตัวแปรลงไป
@@ -54,6 +70,7 @@ function callDecimal(decimal){
     //ถ้ามีการกรอกตัวแรกและตัวดำเนินการแล้วจะกรอกทศนิยมไม่ได้
     if(waitForNext) return;
     // กรองก่อนว่ามี จุดอยู่ในช่องแล้วหรือยัง ถ้ามีแล้วไม่ให้พิมซ้ำ โดยใช้การหา string ด้วย .includes
+    // .includes('.'): คำสั่งนี้ถามว่า "ในข้อความนั้น มีตัวจุด (.) ผสมอยู่ไหม?"
     if (!calculatorDisplay.textContent.includes('.')){
         calculatorDisplay.textContent = `${calculatorDisplay.textContent}.`;
     }
