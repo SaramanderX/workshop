@@ -66,10 +66,8 @@ toggleIcons.forEach((icon)=>{
             inputField.type = 'text';
             
         } else {
-            
             // ถ้าเป็นรูปตาปิด -> เปลี่ยนกลับเป็นตาเปิด
             this.classList.replace('fa-eye-slash', 'fa-eye');
-            
             // เปลี่ยน input กลับเป็น password (ซ่อนรหัส)
             inputField.type = 'password';
         }
@@ -97,7 +95,7 @@ function usernameValidate(input,min,max){
     }else if(input.value.length>max){
         showError(input,`Username ต้องมีไม่เกิน ${max} ตัวอักษร`);
     }else{
-        checkPasswordMix(input);
+        showSuccess(input);
     }
 }
 
@@ -107,9 +105,9 @@ function passwordCheckLength(pass1,min,max){
     
      //ต้องแปลงก่อนเพื่อถอยหลัง parentelement  1ขั้น
     if(pass1.value.length<min){
-        showError(pass1.closest('.form-control'),`Password ต้องมีไม่น้อยกว่า ${min} ตัวอักษร`);
+        showError(pass1,`Password ต้องมีไม่น้อยกว่า ${min} ตัวอักษร`);
     }else if(pass1.value.length>max){
-        showError(pass1.closest('.form-control'),`Password ต้องมีไม่เกิน ${max} ตัวอักษร`);
+        showError(pass1,`Password ต้องมีไม่เกิน ${max} ตัวอักษร`);
     }else{
         checkPasswordMix(pass1);
         // showSuccess(pass1_toParent);
@@ -119,11 +117,11 @@ function passwordCheckLength(pass1,min,max){
 function passwordCheckMatch(pass1,pass2){
 
     if(pass1.value != pass2.value){
-        showError(pass2.closest('.form-control'),`รหัสผ่านไม่ตรงกัน`); //อ้างอิงไปที่ passwordEL_confirm
+        showError(pass2,`รหัสผ่านไม่ตรงกัน`); //อ้างอิงไปที่ passwordEL_confirm
     }else if(pass2.value ==''){
-        showError(pass2.closest('.form-control'),`กรุณากรอกรหัสให้ครบถ้วน`);
+        showError(pass2,`กรุณากรอกรหัสให้ครบถ้วน`);
     }else{
-        showSuccess(pass2.closest('.form-control'));
+        showSuccess(pass2);
     }
 }
 
@@ -141,9 +139,9 @@ function checkPasswordMix(input) {
     // เช็คเงื่อนไข: ถ้า "ไม่มีตัวอักษร" หรือ "ไม่มีตัวเลข" อย่างใดอย่างหนึ่ง
     //.test(value): เป็นคำสั่งให้ JS ตรวจสอบว่าข้อความตรงตามสูตรไหม (ได้ค่า true/false)
     if (!hasLetter.test(value) || !hasNumber.test(value)) {
-        showError(input.closest('.form-control'), 'รหัสผ่านต้องมีทั้งตัวอักษรและตัวเลขผสมกัน');
+        showError(input, 'รหัสผ่านต้องมีทั้งตัวอักษรและตัวเลขผสมกัน');
     } else {
-        showSuccess(input.closest('.form-control'));
+        showSuccess(input);
     }
 }
 //การเช็ครูปแบบอีเมลต้องใช้ "สูตรคณิตศาสตร์ภาษาต่างดาว" ที่เรียกว่า Regex ครับ (ก๊อปไปใช้ได้เลย เป็นมาตรฐานโลก)

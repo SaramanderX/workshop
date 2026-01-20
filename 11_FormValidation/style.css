@@ -67,12 +67,6 @@ h2{
     right: 5px;
     z-index: 10;
 }
-.error-msg{
-    /* ล็อกขนาดกล่องไว้ เมื่อไม่ตัวอักษรจะไม่เกิดปัญหา */
-    font-size: 16px;
-    height: 30px;
-    margin: 0; /* ล้าง margin ที่อาจแฝงมาจาก browser */
-}
 label{
     display: block;
     margin-top: 0;
@@ -121,6 +115,9 @@ input:focus{
 
 .form-control .error-msg {
     color: rgb(250, 25, 0);
+    font-size: 16px;
+    height: 30px;
+    margin: 0; /* ล้าง margin ที่อาจแฝงมาจาก browser */
     font-size: 0.8rem;
     visibility: hidden; /* ปกติซ่อนไว้ */
 }
