@@ -11,34 +11,34 @@
     <div class="container">
         <h2>แบบฟอร์มลงทะเบียน</h2>
         <form action="" id="form" class="form">
-            <div class="form-control">
+            <div class="form-control ">
                 <label for="">ชื่อผู้ใช้</label>
-                <input name="username" type="text" id="username" placeholder="ป้อนชื่อผู้ใช้">
-                <div class="error-msg">username ต้องมีมากกว่า 5 ตัวอักษร</div>
+                <input name="username" type="text" id="username" placeholder="Enter Username">
+                <small class="error-msg"></small>
             </div>
             
             <div class="form-control">
                 <label for="">อีเมล</label>
                 <input type="email" name="email" id="email" placeholder="X-XXX@email.com">
-                <div class="error-msg">รูปแบบ email ไม่ถูกต้อง</div>
+                <small class="error-msg"></small>
             </div>
             
             <div class="form-control">
                 <label for="">รหัสผ่าน</label>
                 <div class="password-box">
-                    <input type="password" name="password" id="password" placeholder="ป้อนรหัสผ่าน">
+                    <input type="password" name="password" id="password" placeholder="Enter Your Password">
                     <i class="fa-regular fa-eye"></i>
                 </div>
-                <div class="error-msg">รหัสผ่านน้อยกว่า 3 ตัวอักษร</div>
+                <small class="error-msg"></small>
             </div>
             
             <div class="form-control">
                 <label for="">ยืนยันรหัสผ่าน</label>
                 <div class="password-box">
-                    <input type="password" name="password-confirm" id="password-confirm" placeholder="ป้อนรหัสผ่านอีกครั้ง">
+                    <input type="password" name="password-confirm" id="password-confirm" placeholder="Enter Your Re-Password">
                     <i class="fa-regular fa-eye"></i>
                 </div>
-                <div class="error-msg"></div>
+                <small class="error-msg"></small>
             </div>
             <button type="submit" id="registerBTN" class="registerBTN">ลงทะเบียน</button>
         </form>

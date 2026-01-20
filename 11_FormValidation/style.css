@@ -24,6 +24,7 @@ body{
     border-radius: 10px;
     box-shadow: 0 15px 25px rgba(0,0,0,0.5);
     /* กรณี ข้อมูลเกิน container สร้าง เป็นร scroll bar ได้ด้วย overflow: auto*/
+    overflow: hidden;
 }
 h2{
     margin:30px 0 10px;
@@ -38,8 +39,17 @@ h2{
     margin: 0;
 }
 .form-control{ 
-    margin-bottom: 20px;
-    /* border: 1px solid red ; */
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.form-control input{
+    display: block; 
+    border-radius: 4px;
+    border:2px solid #f0f0f0;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
 }
 .password-box{
     position: relative;
@@ -55,26 +65,26 @@ h2{
     position: absolute;
     top:15px;
     right: 5px;
+    z-index: 10;
 }
 .error-msg{
     /* ล็อกขนาดกล่องไว้ เมื่อไม่ตัวอักษรจะไม่เกิดปัญหา */
     font-size: 16px;
-    min-height: 25px;
-    color: red;
+    height: 30px;
+    margin: 0; /* ล้าง margin ที่อาจแฝงมาจาก browser */
 }
 label{
     display: block;
-    /* border: 1px solid red; */
     margin-top: 0;
     font-size: 20px;
     font-weight: bold;
 }
-input{
+/* input{
     width: 100%;
     font-size: 15px;
     padding: 10px;
     margin-bottom: 5px;
-}
+} */
 input:focus{
     outline: none;
 }
@@ -85,13 +95,37 @@ input:focus{
     color: white;
     background-color: cornflowerblue;
     margin-bottom: 20px;
+    border: 2px solid cornflowerblue;
     border-radius: 5px;
     transition: transform 0.3s ease, background-color 0.6s;
+    cursor: pointer;
 }
 .registerBTN:hover{
     /* ย้ายแกน Y (แนวตั้ง) ติดลบคือขึ้นบน */
     transform: translateY(-10px);
     background-color: gold;
+    border: 2px solid gold;
     color: black;
+}
+
+/* validation */
+/* ถ้าถูกต้อง ให้ขอบเป็นสีเขียว */
+.form-control.success input {
+    border-color: #2ecc71;
+}
+
+/* ถ้าผิด ให้ขอบเป็นสีแดง และโชว์ข้อความ */
+.form-control.error input {
+    border-color: #e74c3c;
+}
+
+.form-control .error-msg {
+    color: rgb(250, 25, 0);
+    font-size: 0.8rem;
+    visibility: hidden; /* ปกติซ่อนไว้ */
+}
+
+.form-control.error .error-msg {
+    visibility: visible; /* ถ้ามี error ค่อยโชว์ */
 }
 
